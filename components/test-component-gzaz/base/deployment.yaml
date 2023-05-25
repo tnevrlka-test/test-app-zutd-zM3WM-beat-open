@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/created-by: application-service
+    app.kubernetes.io/instance: test-component-gzaz
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: test-component-gzaz
+    app.kubernetes.io/part-of: test-app-zutd
+  name: test-component-gzaz
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: python-app
+      app.kubernetes.io/instance: test-component-gzaz
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: python-app
+        app.kubernetes.io/instance: test-component-gzaz
+    spec:
+      containers:
+      - image: python-image:latest
+        name: my-python
+        ports:
+        - containerPort: 8081
+          name: http
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100Mi
+          requests:
+            cpu: 10m
+            memory: 50Mi
+status: {}
